@@ -1,7 +1,6 @@
 import FacturaModel from "../BaseDeDatos/Modelos/Factura.model";
-import UsuarioModel from "../BaseDeDatos/Modelos/Usuario.model";
 import ProductoModel from "../BaseDeDatos/Modelos/Producto.model";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import ProductoEnFacturaModel from "../BaseDeDatos/Modelos/ProductoEnFactura.model";
 import mongoose from "mongoose";
 
@@ -57,8 +56,8 @@ export const GuardarFatura = async (
   const {
     paymentData,
     products,
-    dayInvoice
-  }: { paymentData: IPaymentData; products: IProduct[] , dayInvoice: string} = req.body;
+    day
+  }: { paymentData: IPaymentData; products: IProduct[] , day: string} = req.body;
   const IdDeUsuario = (req.user as { _id: string })?._id;
   if (IdDeUsuario.length === 0) return res.status(404);
   // Implementar el codigo para guardar la factura en la base de datos
@@ -76,7 +75,7 @@ export const GuardarFatura = async (
     estado: "Pagado",
     creditoActivo: false,
     saldoPendiente: 0,
-    creadoEn: dayInvoice,
+    creadoEn: day,
     actualizadoEn: new Date().toLocaleDateString("es-co"),
     usuariocontenedor: IdDeUsuario,
   });

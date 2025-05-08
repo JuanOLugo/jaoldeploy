@@ -1,8 +1,8 @@
 import FacturaModel from "../BaseDeDatos/Modelos/Factura.model";
 import ReportesModel, { IReport } from "../BaseDeDatos/Modelos/Reportes.model";
-import UsuarioModel from "../BaseDeDatos/Modelos/Usuario.model";
+
 import VendedoresModel from "../BaseDeDatos/Modelos/Vendedores.model";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response} from "express";
 
 interface ISeller {
   _id: string;

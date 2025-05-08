@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import FacturaModel from "../BaseDeDatos/Modelos/Factura.model";
 import ProductoEnFacturaModel, {
-  IProductoEnFactura,
+
 } from "../BaseDeDatos/Modelos/ProductoEnFactura.model";
 import ProductoModel from "../BaseDeDatos/Modelos/Producto.model";
 import nodemailer from "nodemailer";
