@@ -34,8 +34,14 @@ app.get("*", (req, res) =>
 //Configuracion del servidor & puerto
 if(!process.env.PORT) throw new Error("No se ha definido la variable de entorno PORT")
 const server_port = parseInt(process.env.PORT);
-app.listen(server_port, () => {
-  console.log("Servidor esta activo en el puerto:", server_port);
-  conexionDbPrincipal();
-});
+
+conexionDbPrincipal()
+  .then((_) => {
+    app.listen(server_port, () => {
+      console.log("Servidor esta activo en el puerto:", server_port);
+    });
+  })
+  .catch((error) => {
+    console.error("Error al conectar a la base de datos:", error);
+  });
 export default app;
