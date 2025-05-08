@@ -57,7 +57,8 @@ export const GuardarFatura = async (
   const {
     paymentData,
     products,
-  }: { paymentData: IPaymentData; products: IProduct[] } = req.body;
+    dayInvoice
+  }: { paymentData: IPaymentData; products: IProduct[] , dayInvoice: string} = req.body;
   const IdDeUsuario = (req.user as { _id: string })?._id;
   if (IdDeUsuario.length === 0) return res.status(404);
   // Implementar el codigo para guardar la factura en la base de datos
@@ -75,7 +76,7 @@ export const GuardarFatura = async (
     estado: "Pagado",
     creditoActivo: false,
     saldoPendiente: 0,
-    creadoEn: new Date().toLocaleDateString("es-co"),
+    creadoEn: dayInvoice,
     actualizadoEn: new Date().toLocaleDateString("es-co"),
     usuariocontenedor: IdDeUsuario,
   });
