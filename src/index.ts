@@ -8,6 +8,8 @@ import productoRutas from "./Rutas/productos.rutas";
 import facturasRutas from "./Rutas/facturas.rutas";
 import vendedorRutas from "./Rutas/vendedor.rutas";
 import { config } from "dotenv";
+import morgan from "morgan";
+
 config()
 const app = express();
 
@@ -19,6 +21,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(morgan(':method :url :status :response-time ms'));
 app.use(PassportStrategy.initialize());
 app.use("/api/auth", usuarioRutas);
 app.use("/api/product", productoRutas);
